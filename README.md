@@ -28,54 +28,54 @@ A feature-rich blog application built with Django, featuring user authentication
 
 1. Clone the repository
 
-```bash
-git clone https://github.com/yourusername/Blogs-Project.git
-cd Blogs-Project
-```
+   ```bash
+   git clone https://github.com/yourusername/Blogs-Project.git
+   cd Blogs-Project
+   ```
 
-2. Create a virtual environment
+1. Create a virtual environment
 
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-3. Install dependencies
+1. Install dependencies
 
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-4. Configure environment (Optional) Copy `.env.example` to `.env` and update the values:
+1. Configure environment
 
-```bash
-cp .env.example .env
-# Edit .env file with your settings (if needed)
-```
+   ```bash
+   cp .env.example .env
+   # Edit .env file with your settings
+   ```
 
-5. Run migrations
+1. Run migrations
 
-```bash
-python manage.py migrate
-```
+   ```bash
+   python manage.py migrate
+   ```
 
-6. Create a superuser (admin)
+1. Create a superuser (admin)
 
-```bash
-python manage.py createsuperuser
-```
+   ```bash
+   python manage.py createsuperuser
+   ```
 
-7. Run the development server
+1. Run the development server
 
-```bash
-python manage.py runserver
-```
+   ```bash
+   python manage.py runserver
+   ```
 
 Visit `http://127.0.0.1:8000` in your browser to see the application.
 
 ## Project Structure
 
-```
+```text
 blog_project/
 ├── blog/                   # Main application
 │   ├── templates/         # HTML templates
@@ -84,15 +84,15 @@ blog_project/
 │   ├── models.py         # Database models
 │   ├── views.py          # View logic
 │   ├── urls.py           # URL routing
-│   ├── forms.py         # Form definitions
-│   └── admin.py         # Admin interface config
+│   ├── forms.py          # Form definitions
+│   └── admin.py          # Admin interface config
 ├── blog_project/          # Project settings
 │   ├── settings.py       # Project configuration
 │   └── urls.py           # Main URL routing
-├── requirements.txt      # Project dependencies
-├── .env.example         # Example environment variables
-├── .gitignore          # Git ignore rules
-└── README.md           # Project documentation
+├── requirements.txt       # Project dependencies
+├── .env.example          # Example environment variables
+├── .gitignore           # Git ignore rules
+└── README.md            # Project documentation
 ```
 
 ## Features in Detail
@@ -121,14 +121,10 @@ blog_project/
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+1. Create your feature branch (`git checkout -b feature/YourFeature`)
+1. Commit your changes (`git commit -m 'Add some feature'`)
+1. Push to the branch (`git push origin feature/YourFeature`)
+1. Open a Pull Request
 
 ## Acknowledgments
 
