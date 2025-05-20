@@ -1,0 +1,263 @@
+{% extends "blog/base.html" %} {% block title %}Register - Blog{% endblock %} 
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h2 class="card-title text-center mb-4 fw-bold">Create Account</h2>
+        <form method="POST" id="registerForm">
+          {% csrf_token %} {% for field in form %}
+          <div class="mb-4">
+            <label
+              for="{{ field.id_for_label }}"
+              class="form-label fw-medium d-flex align-items-center"
+            >
+              {{ field.label }} {% if field.field.required %}
+              <span class="text-danger ms-1">*</span>
+              {% endif %} {% if field.help_text %}
+              <i
+                class="fas fa-info-circle ms-2 text-primary"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="{{ field.help_text|striptags }}"
+              ></i>
+              {% endif %}
+            </label>
+            {% if field.errors %}
+            <div class="alert alert-danger py-2">{{ field.errors }}</div>
+            {% endif %}
+            <div class="input-group has-validation">
+              {{ field }} {% if 'password' in field.name %}
+              <span class="input-group-text password-toggle" role="button">
+                <i class="fas fa-eye"></i>
+              </span>
+              <div class="invalid-feedback"></div>
+              {% endif %}
+            </div>
+            {% if not 'password' in field.name %}
+            <div class="invalid-feedback"></div>
+            {% endif %}
+          </div>
+          {% endfor %}
+          <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-primary btn-lg fw-medium">
+              <i class="fas fa-user-plus me-2"></i>Create Account
+            </button>
+          </div>
+        </form>
+        <div class="text-center mt-4">
+          <span class="text-muted">Already have an account?</span>
+          <a href="{% url 'login' %}" class="text-decoration-none ms-1"
+            >Login</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_head %}
+<style>
+  .form-control {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #dee2e6;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+  }
+
+  .input-group {
+    position: relative;
+  }
+
+  .input-group .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .input-group-text {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    cursor: pointer;
+    border-top-right-radius: 0.5rem !important;
+    border-bottom-right-radius: 0.5rem !important;
+  }
+
+  .input-group-text:hover {
+    background-color: #e9ecef;
+  }
+
+  .input-group.has-validation .form-control:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .input-group.has-validation .invalid-feedback {
+    margin-top: 0.25rem;
+  }
+
+  .input-group .password-toggle {
+    z-index: 4;
+  }
+
+  /* Ensure the toggle button stays visible */
+  .form-control.is-invalid ~ .password-toggle {
+    border-color: #dc3545;
+    z-index: 4;
+  }
+
+  /* Custom styling for password toggle button */
+  .password-toggle {
+    min-width: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .password-toggle i {
+    color: #6c757d;
+    transition: color 0.15s ease-in-out;
+  }
+
+  .password-toggle:hover i {
+    color: #495057;
+  }
+
+  .btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
+  }
+
+  .alert-danger {
+    background-color: #fff5f5;
+    color: #dc3545;
+    border-color: #ffa7a7;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-label {
+    font-size: 0.95rem;
+    color: #344767;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Improve password field appearance */
+  input[type="password"] {
+    letter-spacing: 0.1em;
+  }
+
+  .invalid-feedback {
+    font-size: 0.875rem;
+  }
+
+  /* Style for required field indicator */
+  .text-danger {
+    font-weight: bold;
+  }
+
+  /* Custom tooltip style */
+  .tooltip .tooltip-inner {
+    max-width: 300px;
+    padding: 0.5rem 1rem;
+    background-color: #344767;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    // Password visibility toggle
+    document.querySelectorAll(".password-toggle").forEach(function (toggle) {
+      toggle.addEventListener("click", function () {
+        const input = this.parentElement.querySelector("input");
+        const icon = this.querySelector("i");
+
+        if (input.type === "password") {
+          input.type = "text";
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+        } else {
+          input.type = "password";
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+        }
+      });
+    });
+
+    // Real-time password validation
+    const password1 = document.querySelector('input[name="password1"]');
+    const password2 = document.querySelector('input[name="password2"]');
+
+    if (password1) {
+      password1.addEventListener("input", validatePassword);
+    }
+
+    if (password2) {
+      password2.addEventListener("input", function () {
+        const feedback = this.parentElement.querySelector(".invalid-feedback");
+        if (this.value !== password1.value) {
+          this.classList.add("is-invalid");
+          feedback.textContent = "Passwords do not match";
+        } else {
+          this.classList.remove("is-invalid");
+          feedback.textContent = "";
+        }
+      });
+    }
+
+    function validatePassword() {
+      const value = password1.value;
+      const feedback =
+        password1.parentElement.querySelector(".invalid-feedback");
+
+      if (value.length < 8) {
+        password1.classList.add("is-invalid");
+        feedback.textContent = "Password must be at least 8 characters long";
+        return;
+      }
+
+      if (/^\d+$/.test(value)) {
+        password1.classList.add("is-invalid");
+        feedback.textContent = "Password cannot be entirely numeric";
+        return;
+      }
+
+      password1.classList.remove("is-invalid");
+      feedback.textContent = "";
+    }
+  });
+</script>
+{% endblock %}

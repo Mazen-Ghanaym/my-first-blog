@@ -1,0 +1,79 @@
+{% extends "blog/base.html" %} {% block title %}Login - Blog{% endblock %} 
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h2 class="card-title text-center mb-4 fw-bold">Welcome Back</h2>
+        <form method="POST">
+          {% csrf_token %} {% for field in form %}
+          <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label fw-medium"
+              >{{ field.label }}</label
+            >
+            {{ field.errors }}
+            <div class="input-group">{{ field }}</div>
+          </div>
+          {% endfor %}
+          <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-primary btn-lg fw-medium">
+              <i class="fas fa-sign-in-alt me-2"></i>Login
+            </button>
+          </div>
+        </form>
+        <div class="text-center mt-4">
+          <span class="text-muted">Need an account?</span>
+          <a href="{% url 'register' %}" class="text-decoration-none ms-1"
+            >Sign Up</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_head %}
+<style>
+  .form-control {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #dee2e6;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
+  }
+
+  .form-label {
+    color: #495057;
+    margin-bottom: 0.5rem;
+  }
+
+  .errorlist {
+    color: #dc3545;
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+</style>
+{% endblock %}
