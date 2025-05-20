@@ -19,17 +19,16 @@ A feature-rich blog application built with Django, featuring user authentication
 - Python 3.12+
 - Django 5.0+
 - Bootstrap 5.1.3
-- Font Awesome 6.0
 - SQLite (Development)
 - HTML5/CSS3
-- JavaScript (ES6+)
+- JavaScript
 
 ## Getting Started
 
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/yourusername/Blogs-Project.git
+   git clone https://github.com/Mazen-Ghanaym/Django-Blog.git
    cd Blogs-Project
    ```
 
